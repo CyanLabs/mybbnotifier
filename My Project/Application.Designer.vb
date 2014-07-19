@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.MyBB_Notifier_Client.Form1
+            Me.MainForm = Global.MyBB_Notifier.Form1
         End Sub
     End Class
 End Namespace

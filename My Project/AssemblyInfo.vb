@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("MyBB Notifier Client")> 
 <Assembly: AssemblyDescription("Client side of MyBB Notifier")> 
 <Assembly: AssemblyCompany("Cyanlabs")> 
-<Assembly: AssemblyProduct("MyBB Notifier Client")> 
+<Assembly: AssemblyProduct("MyBB Notifier")> 
 <Assembly: AssemblyCopyright("Copyright © Cyanlabs 2014")> 
 <Assembly: AssemblyTrademark("")> 
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.3.0.0")> 
-<Assembly: AssemblyFileVersion("1.3.0.0")> 
+<Assembly: AssemblyVersion("1.4.0.0")> 
+<Assembly: AssemblyFileVersion("1.4.0.0")> 

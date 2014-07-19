@@ -113,6 +113,18 @@ Namespace My
                 Me("UID") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property Update() As Boolean
+            Get
+                Return CType(Me("Update"),Boolean)
+            End Get
+            Set
+                Me("Update") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
@@ -123,10 +135,10 @@ Namespace My
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Friend Module MySettingsProperty
         
-        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.MyBB_Notifier_Client.My.MySettings
+        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")> _
+        Friend ReadOnly Property Settings() As Global.MyBB_Notifier.My.MySettings
             Get
-                Return Global.MyBB_Notifier_Client.My.MySettings.Default
+                Return Global.MyBB_Notifier.My.MySettings.Default
             End Get
         End Property
     End Module

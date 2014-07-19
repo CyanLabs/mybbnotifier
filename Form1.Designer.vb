@@ -37,21 +37,20 @@ Partial Class Form1
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ShowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.numInterval = New System.Windows.Forms.NumericUpDown()
-        Me.txtAPI = New System.Windows.Forms.TextBox()
-        Me.txtScript = New System.Windows.Forms.TextBox()
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.lblVersion = New System.Windows.Forms.Label()
         Me.lblMyBB = New System.Windows.Forms.LinkLabel()
         Me.lblCyan = New System.Windows.Forms.LinkLabel()
         Me.lblUID = New System.Windows.Forms.Label()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.chkUpdate = New System.Windows.Forms.CheckBox()
         Me.numUID = New System.Windows.Forms.NumericUpDown()
+        Me.numInterval = New System.Windows.Forms.NumericUpDown()
+        Me.txtAPI = New System.Windows.Forms.TextBox()
+        Me.txtScript = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
-        CType(Me.numInterval, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.numUID, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numInterval, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -76,7 +75,7 @@ Partial Class Form1
         Me.DataGridView1.ShowCellErrors = False
         Me.DataGridView1.ShowCellToolTips = False
         Me.DataGridView1.ShowEditingIcon = False
-        Me.DataGridView1.Size = New System.Drawing.Size(954, 201)
+        Me.DataGridView1.Size = New System.Drawing.Size(978, 201)
         Me.DataGridView1.TabIndex = 1
         '
         'Subject
@@ -117,11 +116,11 @@ Partial Class Form1
         '
         Me.lblAPI.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblAPI.AutoSize = True
-        Me.lblAPI.Location = New System.Drawing.Point(312, 16)
+        Me.lblAPI.Location = New System.Drawing.Point(289, 17)
         Me.lblAPI.Name = "lblAPI"
-        Me.lblAPI.Size = New System.Drawing.Size(48, 13)
+        Me.lblAPI.Size = New System.Drawing.Size(28, 13)
         Me.lblAPI.TabIndex = 3
-        Me.lblAPI.Text = "API Key:"
+        Me.lblAPI.Text = "Key:"
         '
         'Timer1
         '
@@ -130,20 +129,20 @@ Partial Class Form1
         '
         Me.lblInterval.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblInterval.AutoSize = True
-        Me.lblInterval.Location = New System.Drawing.Point(519, 16)
+        Me.lblInterval.Location = New System.Drawing.Point(441, 16)
         Me.lblInterval.Name = "lblInterval"
-        Me.lblInterval.Size = New System.Drawing.Size(94, 13)
+        Me.lblInterval.Size = New System.Drawing.Size(45, 13)
         Me.lblInterval.TabIndex = 3
-        Me.lblInterval.Text = "Interval (seconds):"
+        Me.lblInterval.Text = "Interval:"
         '
         'btnRefresh
         '
         Me.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnRefresh.Location = New System.Drawing.Point(878, 12)
+        Me.btnRefresh.Location = New System.Drawing.Point(938, 13)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(91, 21)
+        Me.btnRefresh.Size = New System.Drawing.Size(55, 21)
         Me.btnRefresh.TabIndex = 5
-        Me.btnRefresh.Text = "Force Refresh"
+        Me.btnRefresh.Text = "Refresh"
         Me.btnRefresh.UseVisualStyleBackColor = True
         '
         'ntfyIcon
@@ -172,40 +171,10 @@ Partial Class Form1
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
-        'numInterval
-        '
-        Me.numInterval.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.numInterval.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.MyBB_Notifier_Client.My.MySettings.Default, "Interval", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.numInterval.Location = New System.Drawing.Point(619, 13)
-        Me.numInterval.Name = "numInterval"
-        Me.numInterval.Size = New System.Drawing.Size(46, 20)
-        Me.numInterval.TabIndex = 4
-        Me.numInterval.Value = Global.MyBB_Notifier_Client.My.MySettings.Default.Interval
-        '
-        'txtAPI
-        '
-        Me.txtAPI.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.txtAPI.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.MyBB_Notifier_Client.My.MySettings.Default, "APIKey", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.txtAPI.Location = New System.Drawing.Point(366, 13)
-        Me.txtAPI.Name = "txtAPI"
-        Me.txtAPI.Size = New System.Drawing.Size(141, 20)
-        Me.txtAPI.TabIndex = 2
-        Me.txtAPI.Text = Global.MyBB_Notifier_Client.My.MySettings.Default.APIKey
-        '
-        'txtScript
-        '
-        Me.txtScript.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.txtScript.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.MyBB_Notifier_Client.My.MySettings.Default, "ScriptURL", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.txtScript.Location = New System.Drawing.Point(99, 13)
-        Me.txtScript.Name = "txtScript"
-        Me.txtScript.Size = New System.Drawing.Size(200, 20)
-        Me.txtScript.TabIndex = 2
-        Me.txtScript.Text = Global.MyBB_Notifier_Client.My.MySettings.Default.ScriptURL
-        '
         'btnUpdate
         '
         Me.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnUpdate.Location = New System.Drawing.Point(781, 12)
+        Me.btnUpdate.Location = New System.Drawing.Point(841, 13)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(91, 21)
         Me.btnUpdate.TabIndex = 5
@@ -216,7 +185,7 @@ Partial Class Form1
         '
         Me.lblVersion.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.lblVersion.BackColor = System.Drawing.Color.Transparent
-        Me.lblVersion.Location = New System.Drawing.Point(15, 243)
+        Me.lblVersion.Location = New System.Drawing.Point(27, 243)
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(954, 13)
         Me.lblVersion.TabIndex = 6
@@ -241,7 +210,7 @@ Partial Class Form1
         Me.lblCyan.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCyan.AutoSize = True
         Me.lblCyan.LinkArea = New System.Windows.Forms.LinkArea(34, 9)
-        Me.lblCyan.Location = New System.Drawing.Point(738, 243)
+        Me.lblCyan.Location = New System.Drawing.Point(762, 243)
         Me.lblCyan.Name = "lblCyan"
         Me.lblCyan.Size = New System.Drawing.Size(231, 17)
         Me.lblCyan.TabIndex = 8
@@ -253,43 +222,77 @@ Partial Class Form1
         '
         Me.lblUID.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblUID.AutoSize = True
-        Me.lblUID.Location = New System.Drawing.Point(681, 16)
+        Me.lblUID.Location = New System.Drawing.Point(556, 16)
         Me.lblUID.Name = "lblUID"
-        Me.lblUID.Size = New System.Drawing.Size(46, 13)
+        Me.lblUID.Size = New System.Drawing.Size(32, 13)
         Me.lblUID.TabIndex = 3
-        Me.lblUID.Text = "User ID:"
+        Me.lblUID.Text = "User:"
         '
-        'NumericUpDown1
+        'chkUpdate
         '
-        Me.NumericUpDown1.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.NumericUpDown1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.MyBB_Notifier_Client.My.MySettings.Default, "Interval", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown1.Location = New System.Drawing.Point(800, 13)
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(46, 20)
-        Me.NumericUpDown1.TabIndex = 4
-        Me.NumericUpDown1.Value = Global.MyBB_Notifier_Client.My.MySettings.Default.Interval
+        Me.chkUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.chkUpdate.AutoSize = True
+        Me.chkUpdate.Checked = Global.MyBB_Notifier.My.MySettings.Default.Update
+        Me.chkUpdate.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkUpdate.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.MyBB_Notifier.My.MySettings.Default, "Update", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.chkUpdate.Location = New System.Drawing.Point(675, 15)
+        Me.chkUpdate.Name = "chkUpdate"
+        Me.chkUpdate.Size = New System.Drawing.Size(141, 17)
+        Me.chkUpdate.TabIndex = 10
+        Me.chkUpdate.Text = "Auto Update Application"
+        Me.chkUpdate.UseVisualStyleBackColor = True
         '
         'numUID
         '
         Me.numUID.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.numUID.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.MyBB_Notifier_Client.My.MySettings.Default, "UID", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.numUID.Location = New System.Drawing.Point(729, 13)
+        Me.numUID.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.MyBB_Notifier.My.MySettings.Default, "UID", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.numUID.Location = New System.Drawing.Point(594, 13)
         Me.numUID.Name = "numUID"
         Me.numUID.Size = New System.Drawing.Size(46, 20)
         Me.numUID.TabIndex = 9
-        Me.numUID.Value = Global.MyBB_Notifier_Client.My.MySettings.Default.UID
+        Me.numUID.Value = Global.MyBB_Notifier.My.MySettings.Default.UID
+        '
+        'numInterval
+        '
+        Me.numInterval.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.numInterval.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.MyBB_Notifier.My.MySettings.Default, "Interval", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.numInterval.Location = New System.Drawing.Point(492, 13)
+        Me.numInterval.Name = "numInterval"
+        Me.numInterval.Size = New System.Drawing.Size(46, 20)
+        Me.numInterval.TabIndex = 4
+        Me.numInterval.Value = Global.MyBB_Notifier.My.MySettings.Default.Interval
+        '
+        'txtAPI
+        '
+        Me.txtAPI.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.txtAPI.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.MyBB_Notifier.My.MySettings.Default, "APIKey", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.txtAPI.Location = New System.Drawing.Point(323, 13)
+        Me.txtAPI.Name = "txtAPI"
+        Me.txtAPI.Size = New System.Drawing.Size(100, 20)
+        Me.txtAPI.TabIndex = 2
+        Me.txtAPI.Text = Global.MyBB_Notifier.My.MySettings.Default.APIKey
+        '
+        'txtScript
+        '
+        Me.txtScript.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.txtScript.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.MyBB_Notifier.My.MySettings.Default, "ScriptURL", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.txtScript.Location = New System.Drawing.Point(99, 13)
+        Me.txtScript.Name = "txtScript"
+        Me.txtScript.Size = New System.Drawing.Size(170, 20)
+        Me.txtScript.TabIndex = 2
+        Me.txtScript.Text = Global.MyBB_Notifier.My.MySettings.Default.ScriptURL
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(984, 261)
+        Me.ClientSize = New System.Drawing.Size(1008, 261)
+        Me.Controls.Add(Me.chkUpdate)
         Me.Controls.Add(Me.numUID)
         Me.Controls.Add(Me.lblCyan)
         Me.Controls.Add(Me.lblMyBB)
         Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.btnRefresh)
-        Me.Controls.Add(Me.NumericUpDown1)
         Me.Controls.Add(Me.numInterval)
         Me.Controls.Add(Me.lblUID)
         Me.Controls.Add(Me.lblInterval)
@@ -300,14 +303,13 @@ Partial Class Form1
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.lblVersion)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(1000, 300)
+        Me.MinimumSize = New System.Drawing.Size(1024, 300)
         Me.Name = "Form1"
         Me.Text = "MyBB Notifier"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
-        CType(Me.numInterval, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.numUID, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numInterval, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -333,7 +335,7 @@ Partial Class Form1
     Friend WithEvents lblMyBB As System.Windows.Forms.LinkLabel
     Friend WithEvents lblCyan As System.Windows.Forms.LinkLabel
     Friend WithEvents lblUID As System.Windows.Forms.Label
-    Friend WithEvents NumericUpDown1 As System.Windows.Forms.NumericUpDown
     Friend WithEvents numUID As System.Windows.Forms.NumericUpDown
+    Friend WithEvents chkUpdate As System.Windows.Forms.CheckBox
 
 End Class

@@ -10,17 +10,25 @@
 'Feel free to improve or break this code and re-distribute it. Leave the credit for both Fma965/Cyanlabs and ShrinkOnce.
 Imports Newtonsoft.Json
 Imports System.Net
+Imports System.Threading
+
 Public Class Form1
     Dim wc As New WebClient, obj As IList, json As String = ""
     Dim DoClose As Boolean = False, oldcount As Integer = 999999999
+    Dim Updater As New Cyanlabs_Updater.Updater
+    Private UpdateChecker As System.Threading.Thread = New Thread(AddressOf Updater.IsLatest)
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If chkUpdate.Checked = True Then
+            '   UpdateChecker.IsBackground = True
+            UpdateChecker.Start()
+        End If
         Timer1.Interval = numInterval.Value * 1000
         Timer1.Start()
         Me.Opacity = 0
         Me.ShowInTaskbar = False
         Me.Visible = False
         PollPosts()
-        lblVersion.Text = "v" & System.Reflection.Assembly.GetEntryAssembly.GetName().Version.ToString
+        lblVersion.Text = "Version " & System.Reflection.Assembly.GetEntryAssembly.GetName().Version.ToString
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -54,9 +62,14 @@ Public Class Form1
             If Not oldcount = obj.Count Then
                 If obj.Count = 1 Then
                     ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - New Posts", "There is " & obj.Count & " new post since your last visit", ToolTipIcon.Info)
-                Else
+                    My.Computer.Audio.Play(My.Resources.notify, AudioPlayMode.Background)
+                ElseIf obj.Count = 0 Then
                     ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - New Posts", "There are " & obj.Count & " new posts since your last visit", ToolTipIcon.Info)
+                    ''Else
+                    ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - New Posts", "There are " & obj.Count & " new posts since your last visit", ToolTipIcon.Info)
+                    My.Computer.Audio.Play(My.Resources.notify, AudioPlayMode.Background)
                 End If
+
             End If
             oldcount = obj.Count
         Catch ex As Exception
