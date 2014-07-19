@@ -101,6 +101,18 @@ Namespace My
                 Me("Interval") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property UID() As Decimal
+            Get
+                Return CType(Me("UID"),Decimal)
+            End Get
+            Set
+                Me("UID") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

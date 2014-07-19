@@ -1,6 +1,15 @@
-﻿Imports Newtonsoft.Json
-Imports System.Net
+﻿'MyBB Notifier - V1.1 (Client Side).
+'Created By CyanLabs. (http://cyanlabs.net)
+'Credit to ShrinkOnce @ http://community.mybb.com/thread-123744.html for the idea.
 
+'I based it on the post above but have included security such as API key as in the old version.
+'ANY ONE COULD GET THE SALT AND MD5 OF THE OWNERS (UID 1) ACCOUNT. DO NOT USE THE OLD VERSION BY ShrinkOnce.
+'The old version was also based on a chrome extension where as mine will be a windows application and possible other OS's
+'My version also uses JSON to parse not only the count but also the subject, poster and message.
+
+'Feel free to improve or break this code and re-distribute it. Leave the credit for both Fma965/Cyanlabs and ShrinkOnce.
+Imports Newtonsoft.Json
+Imports System.Net
 Public Class Form1
     Dim wc As New WebClient, obj As IList, json As String = ""
     Dim DoClose As Boolean = False, oldcount As Integer = 999999999
@@ -19,7 +28,7 @@ Public Class Form1
 
     Sub PollPosts()
         Try
-            json = wc.DownloadString(My.Settings.ScriptURL & "?apikey=" & My.Settings.APIKey)
+            json = wc.DownloadString(My.Settings.ScriptURL & "?apikey=" & My.Settings.APIKey & "&UID=" & My.Settings.UID)
         Catch ex As Exception
             ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - Error", ex.Message, ToolTipIcon.Error)
             Timer1.Stop()

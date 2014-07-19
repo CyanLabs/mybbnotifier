@@ -44,9 +44,14 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblMyBB = New System.Windows.Forms.LinkLabel()
         Me.lblCyan = New System.Windows.Forms.LinkLabel()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.numInterval, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -112,7 +117,7 @@ Partial Class Form1
         '
         Me.lblAPI.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblAPI.AutoSize = True
-        Me.lblAPI.Location = New System.Drawing.Point(369, 16)
+        Me.lblAPI.Location = New System.Drawing.Point(312, 16)
         Me.lblAPI.Name = "lblAPI"
         Me.lblAPI.Size = New System.Drawing.Size(48, 13)
         Me.lblAPI.TabIndex = 3
@@ -125,7 +130,7 @@ Partial Class Form1
         '
         Me.lblInterval.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblInterval.AutoSize = True
-        Me.lblInterval.Location = New System.Drawing.Point(585, 16)
+        Me.lblInterval.Location = New System.Drawing.Point(519, 16)
         Me.lblInterval.Name = "lblInterval"
         Me.lblInterval.Size = New System.Drawing.Size(94, 13)
         Me.lblInterval.TabIndex = 3
@@ -171,7 +176,7 @@ Partial Class Form1
         '
         Me.numInterval.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.numInterval.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.MyBB_Notifier_Client.My.MySettings.Default, "Interval", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.numInterval.Location = New System.Drawing.Point(685, 13)
+        Me.numInterval.Location = New System.Drawing.Point(619, 13)
         Me.numInterval.Name = "numInterval"
         Me.numInterval.Size = New System.Drawing.Size(46, 20)
         Me.numInterval.TabIndex = 4
@@ -181,7 +186,7 @@ Partial Class Form1
         '
         Me.txtAPI.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.txtAPI.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.MyBB_Notifier_Client.My.MySettings.Default, "APIKey", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.txtAPI.Location = New System.Drawing.Point(423, 13)
+        Me.txtAPI.Location = New System.Drawing.Point(366, 13)
         Me.txtAPI.Name = "txtAPI"
         Me.txtAPI.Size = New System.Drawing.Size(141, 20)
         Me.txtAPI.TabIndex = 2
@@ -193,14 +198,14 @@ Partial Class Form1
         Me.txtScript.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.MyBB_Notifier_Client.My.MySettings.Default, "ScriptURL", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.txtScript.Location = New System.Drawing.Point(99, 13)
         Me.txtScript.Name = "txtScript"
-        Me.txtScript.Size = New System.Drawing.Size(250, 20)
+        Me.txtScript.Size = New System.Drawing.Size(200, 20)
         Me.txtScript.TabIndex = 2
         Me.txtScript.Text = Global.MyBB_Notifier_Client.My.MySettings.Default.ScriptURL
         '
         'btnUpdate
         '
         Me.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnUpdate.Location = New System.Drawing.Point(749, 12)
+        Me.btnUpdate.Location = New System.Drawing.Point(781, 12)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(91, 21)
         Me.btnUpdate.TabIndex = 5
@@ -244,16 +249,49 @@ Partial Class Form1
         Me.lblCyan.Text = "MyBB Notifier  - Copyright © 2014 CyanLabs "
         Me.lblCyan.UseCompatibleTextRendering = True
         '
+        'Label2
+        '
+        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(681, 16)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(46, 13)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "User ID:"
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.NumericUpDown1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.MyBB_Notifier_Client.My.MySettings.Default, "Interval", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDown1.Location = New System.Drawing.Point(800, 13)
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(46, 20)
+        Me.NumericUpDown1.TabIndex = 4
+        Me.NumericUpDown1.Value = Global.MyBB_Notifier_Client.My.MySettings.Default.Interval
+        '
+        'NumericUpDown2
+        '
+        Me.NumericUpDown2.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.NumericUpDown2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.MyBB_Notifier_Client.My.MySettings.Default, "UID", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.NumericUpDown2.Location = New System.Drawing.Point(729, 13)
+        Me.NumericUpDown2.Name = "NumericUpDown2"
+        Me.NumericUpDown2.Size = New System.Drawing.Size(46, 20)
+        Me.NumericUpDown2.TabIndex = 9
+        Me.NumericUpDown2.Value = Global.MyBB_Notifier_Client.My.MySettings.Default.UID
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 261)
+        Me.Controls.Add(Me.NumericUpDown2)
         Me.Controls.Add(Me.lblCyan)
         Me.Controls.Add(Me.lblMyBB)
         Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.btnRefresh)
+        Me.Controls.Add(Me.NumericUpDown1)
         Me.Controls.Add(Me.numInterval)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.lblInterval)
         Me.Controls.Add(Me.lblAPI)
         Me.Controls.Add(Me.txtAPI)
@@ -268,6 +306,8 @@ Partial Class Form1
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.numInterval, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -292,5 +332,8 @@ Partial Class Form1
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents lblMyBB As System.Windows.Forms.LinkLabel
     Friend WithEvents lblCyan As System.Windows.Forms.LinkLabel
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents NumericUpDown1 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents NumericUpDown2 As System.Windows.Forms.NumericUpDown
 
 End Class
