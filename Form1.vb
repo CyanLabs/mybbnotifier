@@ -97,8 +97,9 @@ Public Class Form1
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         My.Settings.Save()
+        Timer1.Start()
+        Timer1.Interval = numInterval.Value * 1000
         ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - Settings Saved", "Your settings have been updated" & vbNewLine & "now polling " & My.Settings.ScriptURL & vbNewLine & "with " & My.Settings.APIKey & " as API Key", ToolTipIcon.Info)
-        PollPosts()
     End Sub
 End Class
 
