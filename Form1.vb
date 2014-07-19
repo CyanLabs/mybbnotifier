@@ -20,6 +20,7 @@ Public Class Form1
         Me.ShowInTaskbar = False
         Me.Visible = False
         PollPosts()
+        lblVersion.Text = "v" & System.Reflection.Assembly.GetEntryAssembly.GetName().Version.ToString
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick

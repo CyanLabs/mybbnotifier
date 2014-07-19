@@ -41,17 +41,17 @@ Partial Class Form1
         Me.txtAPI = New System.Windows.Forms.TextBox()
         Me.txtScript = New System.Windows.Forms.TextBox()
         Me.btnUpdate = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblVersion = New System.Windows.Forms.Label()
         Me.lblMyBB = New System.Windows.Forms.LinkLabel()
         Me.lblCyan = New System.Windows.Forms.LinkLabel()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblUID = New System.Windows.Forms.Label()
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
-        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
+        Me.numUID = New System.Windows.Forms.NumericUpDown()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.numInterval, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numUID, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -212,16 +212,16 @@ Partial Class Form1
         Me.btnUpdate.Text = "Update Settings"
         Me.btnUpdate.UseVisualStyleBackColor = True
         '
-        'Label1
+        'lblVersion
         '
-        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Location = New System.Drawing.Point(15, 243)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(954, 13)
-        Me.Label1.TabIndex = 6
-        Me.Label1.Text = "Version 1.0"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.lblVersion.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.lblVersion.BackColor = System.Drawing.Color.Transparent
+        Me.lblVersion.Location = New System.Drawing.Point(15, 243)
+        Me.lblVersion.Name = "lblVersion"
+        Me.lblVersion.Size = New System.Drawing.Size(954, 13)
+        Me.lblVersion.TabIndex = 6
+        Me.lblVersion.Text = "Version 1.0"
+        Me.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'lblMyBB
         '
@@ -249,15 +249,15 @@ Partial Class Form1
         Me.lblCyan.Text = "MyBB Notifier  - Copyright © 2014 CyanLabs "
         Me.lblCyan.UseCompatibleTextRendering = True
         '
-        'Label2
+        'lblUID
         '
-        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(681, 16)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(46, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "User ID:"
+        Me.lblUID.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.lblUID.AutoSize = True
+        Me.lblUID.Location = New System.Drawing.Point(681, 16)
+        Me.lblUID.Name = "lblUID"
+        Me.lblUID.Size = New System.Drawing.Size(46, 13)
+        Me.lblUID.TabIndex = 3
+        Me.lblUID.Text = "User ID:"
         '
         'NumericUpDown1
         '
@@ -269,36 +269,36 @@ Partial Class Form1
         Me.NumericUpDown1.TabIndex = 4
         Me.NumericUpDown1.Value = Global.MyBB_Notifier_Client.My.MySettings.Default.Interval
         '
-        'NumericUpDown2
+        'numUID
         '
-        Me.NumericUpDown2.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.NumericUpDown2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.MyBB_Notifier_Client.My.MySettings.Default, "UID", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.NumericUpDown2.Location = New System.Drawing.Point(729, 13)
-        Me.NumericUpDown2.Name = "NumericUpDown2"
-        Me.NumericUpDown2.Size = New System.Drawing.Size(46, 20)
-        Me.NumericUpDown2.TabIndex = 9
-        Me.NumericUpDown2.Value = Global.MyBB_Notifier_Client.My.MySettings.Default.UID
+        Me.numUID.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.numUID.DataBindings.Add(New System.Windows.Forms.Binding("Value", Global.MyBB_Notifier_Client.My.MySettings.Default, "UID", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.numUID.Location = New System.Drawing.Point(729, 13)
+        Me.numUID.Name = "numUID"
+        Me.numUID.Size = New System.Drawing.Size(46, 20)
+        Me.numUID.TabIndex = 9
+        Me.numUID.Value = Global.MyBB_Notifier_Client.My.MySettings.Default.UID
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 261)
-        Me.Controls.Add(Me.NumericUpDown2)
+        Me.Controls.Add(Me.numUID)
         Me.Controls.Add(Me.lblCyan)
         Me.Controls.Add(Me.lblMyBB)
         Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.btnRefresh)
         Me.Controls.Add(Me.NumericUpDown1)
         Me.Controls.Add(Me.numInterval)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.lblUID)
         Me.Controls.Add(Me.lblInterval)
         Me.Controls.Add(Me.lblAPI)
         Me.Controls.Add(Me.txtAPI)
         Me.Controls.Add(Me.lblScriptAddress)
         Me.Controls.Add(Me.txtScript)
         Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblVersion)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(1000, 300)
         Me.Name = "Form1"
@@ -307,7 +307,7 @@ Partial Class Form1
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.numInterval, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numUID, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -329,11 +329,11 @@ Partial Class Form1
     Friend WithEvents ShowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents btnUpdate As System.Windows.Forms.Button
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblVersion As System.Windows.Forms.Label
     Friend WithEvents lblMyBB As System.Windows.Forms.LinkLabel
     Friend WithEvents lblCyan As System.Windows.Forms.LinkLabel
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents lblUID As System.Windows.Forms.Label
     Friend WithEvents NumericUpDown1 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents NumericUpDown2 As System.Windows.Forms.NumericUpDown
+    Friend WithEvents numUID As System.Windows.Forms.NumericUpDown
 
 End Class
