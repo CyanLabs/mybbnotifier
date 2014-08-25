@@ -19,7 +19,7 @@ Public Class Form1
     Private UpdateChecker As System.Threading.Thread = New Thread(AddressOf Updater.IsLatest)
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If chkUpdate.Checked = True Then
-            '   UpdateChecker.IsBackground = True
+            UpdateChecker.IsBackground = True
             UpdateChecker.Start()
         End If
         Timer1.Interval = numInterval.Value * 1000
@@ -34,10 +34,9 @@ Public Class Form1
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         PollPosts()
     End Sub
-
     Sub PollPosts()
         Try
-            json = wc.DownloadString(My.Settings.ScriptURL & "?apikey=" & My.Settings.APIKey & "&UID=" & My.Settings.UID)
+            json = wc.DownloadString(My.Settings.ForumURL & My.Settings.Script & "?apikey=" & My.Settings.APIKey & "&UID=" & My.Settings.UID)
         Catch ex As Exception
             ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - Error", ex.Message, ToolTipIcon.Error)
             Timer1.Stop()
@@ -55,9 +54,15 @@ Public Class Form1
             obj = JsonConvert.DeserializeObject(Of List(Of JSON_result))(json)
 
             DataGridView1.Rows.Clear()
+            Dim x As Integer = 0
             For Each item In obj
                 DataGridView1.Rows.Add(New String() {item.subject, item.message, item.username})
+                DataGridView1.Rows(x).Tag = My.Settings.ForumURL & "/showthread.php?tid=" & item.tid & "pid=" & item.pid & "#pid" & item.pid
+                x = x + 1
             Next
+
+
+            MsgBox(DataGridView1.Rows(1).Tag)
 
             If Not oldcount = obj.Count Then
                 If obj.Count = 1 Then
@@ -65,11 +70,7 @@ Public Class Form1
                     My.Computer.Audio.Play(My.Resources.notify, AudioPlayMode.Background)
                 ElseIf obj.Count = 0 Then
                     ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - New Posts", "There are " & obj.Count & " new posts since your last visit", ToolTipIcon.Info)
-                    ''Else
-                    ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - New Posts", "There are " & obj.Count & " new posts since your last visit", ToolTipIcon.Info)
-                    My.Computer.Audio.Play(My.Resources.notify, AudioPlayMode.Background)
                 End If
-
             End If
             oldcount = obj.Count
         Catch ex As Exception
@@ -112,7 +113,11 @@ Public Class Form1
         My.Settings.Save()
         Timer1.Start()
         Timer1.Interval = numInterval.Value * 1000
-        ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - Settings Saved", "Your settings have been updated" & vbNewLine & "now polling " & My.Settings.ScriptURL & vbNewLine & "with " & My.Settings.APIKey & " as API Key", ToolTipIcon.Info)
+        ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - Settings Saved", "Your settings have been updated" & vbNewLine & "now polling " & My.Settings.ForumURL & My.Settings.Script & vbNewLine & "with " & My.Settings.APIKey & " as API Key", ToolTipIcon.Info)
+    End Sub
+
+    Private Sub DataGridView1_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentDoubleClick
+        Process.Start(DataGridView1.Rows(e.RowIndex).Tag)
     End Sub
 End Class
 
@@ -120,4 +125,6 @@ Public Class JSON_result
     Public subject As String
     Public message As String
     Public username As String
+    Public tid As String
+    Public pid As String
 End Class

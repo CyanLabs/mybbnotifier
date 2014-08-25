@@ -68,13 +68,13 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("http://cyanlabs.net/notifier.php")>  _
-        Public Property ScriptURL() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("/notifier.php")>  _
+        Public Property Script() As String
             Get
-                Return CType(Me("ScriptURL"),String)
+                Return CType(Me("Script"),String)
             End Get
             Set
-                Me("ScriptURL") = value
+                Me("Script") = value
             End Set
         End Property
         
@@ -135,7 +135,7 @@ Namespace My
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Friend Module MySettingsProperty
         
-        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")> _
+        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
         Friend ReadOnly Property Settings() As Global.MyBB_Notifier.My.MySettings
             Get
                 Return Global.MyBB_Notifier.My.MySettings.Default
