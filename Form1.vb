@@ -61,9 +61,6 @@ Public Class Form1
                 x = x + 1
             Next
 
-
-            MsgBox(DataGridView1.Rows(1).Tag)
-
             If Not oldcount = obj.Count Then
                 If obj.Count = 1 Then
                     ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - New Posts", "There is " & obj.Count & " new post since your last visit", ToolTipIcon.Info)
@@ -77,7 +74,7 @@ Public Class Form1
 
         End Try
     End Sub
-    Private Sub ntfyIcon_DoubleClick(sender As Object, e As EventArgs) Handles ntfyIcon.DoubleClick, ShowToolStripMenuItem.Click
+    Private Sub ntfyIcon_Click(sender As Object, e As EventArgs) Handles ShowToolStripMenuItem.Click
         Me.Visible = True
         Me.Opacity = 1
         Me.ShowInTaskbar = True
@@ -118,6 +115,17 @@ Public Class Form1
 
     Private Sub DataGridView1_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentDoubleClick
         Process.Start(DataGridView1.Rows(e.RowIndex).Tag)
+    End Sub
+
+    Private Sub ntfyIcon_DoubleClick(sender As Object, e As EventArgs) Handles ntfyIcon.DoubleClick
+        If Not DataGridView1.Rows.Count = 0 Then
+            Process.Start(DataGridView1.Rows(0).Tag)
+        Else
+            Me.Visible = True
+            Me.Opacity = 1
+            Me.ShowInTaskbar = True
+            Me.WindowState = FormWindowState.Normal
+        End If
     End Sub
 End Class
 
