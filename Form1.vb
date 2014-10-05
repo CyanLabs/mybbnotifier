@@ -11,6 +11,7 @@
 Imports Newtonsoft.Json
 Imports System.Net
 Imports System.Threading
+Imports System.Text.RegularExpressions
 
 Public Class Form1
     Dim wc As New WebClient, obj As IList, json As String = ""
@@ -18,17 +19,16 @@ Public Class Form1
     Dim Updater As New Cyanlabs_Updater.Updater
     Private UpdateChecker As System.Threading.Thread = New Thread(AddressOf Updater.IsLatest)
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If chkUpdate.Checked = True Then
+        If My.Settings.Update = True Then
             UpdateChecker.IsBackground = True
             UpdateChecker.Start()
         End If
-        Timer1.Interval = numInterval.Value * 1000
+        Timer1.Interval = My.Settings.Interval * 1000
         Timer1.Start()
         Me.Opacity = 0
         Me.ShowInTaskbar = False
         Me.Visible = False
         PollPosts()
-        lblVersion.Text = "Version " & System.Reflection.Assembly.GetEntryAssembly.GetName().Version.ToString
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -39,13 +39,12 @@ Public Class Form1
             json = wc.DownloadString(My.Settings.ForumURL & My.Settings.Script & "?apikey=" & My.Settings.APIKey & "&UID=" & My.Settings.UID)
         Catch ex As Exception
             ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - Error", ex.Message, ToolTipIcon.Error)
-            Timer1.Stop()
         End Try
         If json = "Invalid API Key" Or json = "No API Key" Then
             ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - Error", "Missing or Invalid API Key", ToolTipIcon.Error)
             Timer1.Stop()
             Exit Sub
-        ElseIf json = "Please change your API key at the top of this script before use" Then
+        ElseIf json = "Please change your API key at the top of the server script before use" Then
             ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - Error", json, ToolTipIcon.Error)
             Timer1.Stop()
             Exit Sub
@@ -56,20 +55,25 @@ Public Class Form1
             DataGridView1.Rows.Clear()
             Dim x As Integer = 0
             For Each item In obj
+                item.message = Regex.Replace(item.message, "\[[^\.*]*\]", "").Replace(vbNewLine & vbNewLine, " ")
                 DataGridView1.Rows.Add(New String() {item.subject, item.message, item.username})
-                DataGridView1.Rows(x).Tag = My.Settings.ForumURL & "/showthread.php?tid=" & item.tid & "pid=" & item.pid & "#pid" & item.pid
+                If My.Settings.GoogleSEO Then
+                    DataGridView1.Rows(x).Tag = My.Settings.ForumURL & "/showthread.php?tid=" & item.tid & "&action=lastpost"
+                Else
+                    DataGridView1.Rows(x).Tag = My.Settings.ForumURL & "/showthread.php?tid=" & item.tid & "?action=lastpost"
+                End If
                 x = x + 1
             Next
 
             If Not oldcount = obj.Count Then
                 If obj.Count = 1 Then
                     ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - New Posts", "There is " & obj.Count & " new post since your last visit", ToolTipIcon.Info)
-                    My.Computer.Audio.Play(My.Resources.notify, AudioPlayMode.Background)
-                ElseIf obj.Count = 0 Then
-                    ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - New Posts", "There are " & obj.Count & " new posts since your last visit", ToolTipIcon.Info)
+                    If My.Settings.Sound Then My.Computer.Audio.Play(My.Resources.notify, AudioPlayMode.Background)
+                    ElseIf obj.Count = 0 Then
+                        ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - New Posts", "There are " & obj.Count & " new posts since your last visit", ToolTipIcon.Info)
+                    End If
                 End If
-            End If
-            oldcount = obj.Count
+                oldcount = obj.Count
         Catch ex As Exception
 
         End Try
@@ -89,28 +93,9 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click, ExitToolStripMenuItem1.Click
         DoClose = True
         Application.Exit()
-    End Sub
-
-    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
-        PollPosts()
-    End Sub
-
-    Private Sub lblMyBB_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lblMyBB.LinkClicked
-        Process.Start("http://mybb.com")
-    End Sub
-
-    Private Sub lblCyan_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lblCyan.LinkClicked
-        Process.Start("http://cyanlabs.net")
-    End Sub
-
-    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-        My.Settings.Save()
-        Timer1.Start()
-        Timer1.Interval = numInterval.Value * 1000
-        ntfyIcon.ShowBalloonTip(5000, "MyBB Notifier - Settings Saved", "Your settings have been updated" & vbNewLine & "now polling " & My.Settings.ForumURL & My.Settings.Script & vbNewLine & "with " & My.Settings.APIKey & " as API Key", ToolTipIcon.Info)
     End Sub
 
     Private Sub DataGridView1_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentDoubleClick
@@ -127,6 +112,23 @@ Public Class Form1
             Me.WindowState = FormWindowState.Normal
         End If
     End Sub
+
+    Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
+        PollPosts()
+    End Sub
+
+    Private Sub SettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
+        Settings.Show()
+    End Sub
+
+    Private Sub HideToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HideToolStripMenuItem.Click
+        Me.WindowState = FormWindowState.Minimized
+        Me.Visible = False
+    End Sub
+
+    Private Sub MenuStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles MenuStrip1.ItemClicked
+
+    End Sub
 End Class
 
 Public Class JSON_result
@@ -134,5 +136,4 @@ Public Class JSON_result
     Public message As String
     Public username As String
     Public tid As String
-    Public pid As String
 End Class
